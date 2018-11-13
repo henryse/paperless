@@ -13,10 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140419131725) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "documents", force: true do |t|
+  create_table "documents", force: :cascade do |t|
     t.string   "title"
     t.string   "file"
     t.integer  "user_id"
@@ -24,24 +21,24 @@ ActiveRecord::Schema.define(version: 20140419131725) do
     t.datetime "updated_at"
   end
 
-  create_table "documents_labels", id: false, force: true do |t|
+  create_table "documents_labels", id: false, force: :cascade do |t|
     t.integer "document_id"
     t.integer "label_id"
   end
 
-  add_index "documents_labels", ["document_id"], name: "index_documents_labels_on_document_id", using: :btree
-  add_index "documents_labels", ["label_id"], name: "index_documents_labels_on_label_id", using: :btree
+  add_index "documents_labels", ["document_id"], name: "index_documents_labels_on_document_id"
+  add_index "documents_labels", ["label_id"], name: "index_documents_labels_on_label_id"
 
-  create_table "labels", force: true do |t|
+  create_table "labels", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "labels", ["user_id"], name: "index_labels_on_user_id", using: :btree
+  add_index "labels", ["user_id"], name: "index_labels_on_user_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.datetime "created_at"

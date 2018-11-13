@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
-  before_filter :authenticated!, except: [:login, :logout, :authenticate]
-  before_filter :load_user_objects, except: [:login, :logout, :authenticate]
+  before_action :authenticated!, except: [:login, :logout, :authenticate]
+  before_action :load_user_objects, except: [:login, :logout, :authenticate]
 
   private
 
